@@ -12,7 +12,7 @@ import {
 import { resolveConfig } from "prettier";
 const prettyhtml = require("@starptech/prettyhtml");
 
-function getPrettyhtmlConfig(uri?: Uri): Object {
+function getConfig(uri?: Uri): Object {
   return workspace.getConfiguration("prettyhtml", uri) as any;
 }
 
@@ -22,7 +22,7 @@ async function format(
   options: Object
 ): Promise<string> {
   const localPrettierOptions = await resolveConfig(uri.path);
-  const prettyhtmlOptions: any = await getPrettyhtmlConfig(uri);
+  const prettyhtmlOptions: any = await getConfig(uri);
 
   return await prettyhtml(text, {
     useTabs: prettyhtmlOptions.useTabs,
