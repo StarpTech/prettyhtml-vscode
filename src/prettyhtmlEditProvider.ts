@@ -50,7 +50,7 @@ async function format(
     printWidth: prettyhtmlOptions.printWidth,
     singleQuote: prettyhtmlOptions.singleQuote,
     prettier: prettierOptions
-  }).contents;
+  });
 }
 
 function fullDocumentRange(document: TextDocument): Range {

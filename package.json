@@ -69,7 +69,7 @@
     "vscode": "^1.1.21"
   },
   "dependencies": {
-    "@starptech/prettyhtml": "0.0.42",
+    "@starptech/prettyhtml": "0.0.43",
     "prettier": "^1.14.2"
   }
 }

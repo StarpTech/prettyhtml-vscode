@@ -39,7 +39,7 @@ export function format(
  */
 function formatSameAsPrettyhtml(file: string) {
     return format(file).then(result => {
-        const prettierFormatted = prettyhtml(result.source).contents;
+        const prettierFormatted = prettyhtml(result.source);
         assert.equal(result.result, prettierFormatted);
     });
 }
