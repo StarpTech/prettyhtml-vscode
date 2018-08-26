@@ -1,0 +1,75 @@
+{
+  "name": "prettyhtml-vscode",
+  "displayName": "PrettyHtml - Template formatter",
+  "description": "",
+  "version": "0.0.1",
+  "publisher": "starptech",
+  "engines": {
+    "vscode": "^1.26.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "PrettyHtml - Template formatter",
+      "properties": {
+        "prettyhtml.printWidth": {
+          "type": "integer",
+          "default": 80,
+          "description": "Fit code within this line limit",
+          "scope": "resource"
+        },
+        "prettyhtml.tabWidth": {
+          "type": "integer",
+          "default": 2,
+          "description": "Number of spaces it should use per tab",
+          "scope": "resource"
+        },
+        "prettyhtml.singleQuote": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, will use single instead of double quotes",
+          "scope": "resource"
+        },
+        "prettyhtml.useTabs": {
+          "type": "boolean",
+          "default": false,
+          "description": "Indent lines with tabs",
+          "scope": "resource"
+        },
+        "prettyhtml.prettier": {
+          "type": "object",
+          "default": null,
+          "description": "Prettier options",
+          "scope": "resource"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && cross-env CODE_TESTS_WORKSPACE=testWorkspace.code-workspace node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.9.2",
+    "@types/prettier": "^1.13.2",
+    "cross-env": "^5.2.0",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1",
+    "vscode": "^1.1.21"
+  },
+  "dependencies": {
+    "@starptech/prettyhtml": "0.0.42",
+    "prettier": "^1.14.2"
+  }
+}
