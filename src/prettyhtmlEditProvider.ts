@@ -12,10 +12,6 @@ import {
 import { resolveConfig } from "prettier";
 const prettyhtml = require("@starptech/prettyhtml");
 
-function getPrettierConfig(uri?: Uri): Object {
-  return workspace.getConfiguration("prettier", uri) as any;
-}
-
 function getPrettyhtmlConfig(uri?: Uri): Object {
   return workspace.getConfiguration("prettyhtml", uri) as any;
 }
@@ -25,23 +21,7 @@ async function format(
   { uri }: TextDocument,
   options: Object
 ): Promise<string> {
-  const vscodeConfig: any = getPrettierConfig(uri);
   const localPrettierOptions = await resolveConfig(uri.path);
-  const prettierOptions = {
-    printWidth: vscodeConfig.printWidth,
-    tabWidth: vscodeConfig.tabWidth,
-    singleQuote: vscodeConfig.singleQuote,
-    trailingComma: vscodeConfig.trailingComma,
-    bracketSpacing: vscodeConfig.bracketSpacing,
-    jsxBracketSameLine: vscodeConfig.jsxBracketSameLine,
-    // parser: parser,
-    semi: vscodeConfig.semi,
-    useTabs: vscodeConfig.useTabs,
-    proseWrap: vscodeConfig.proseWrap,
-    arrowParens: vscodeConfig.arrowParens,
-
-    ...localPrettierOptions
-  };
   const prettyhtmlOptions: any = await getPrettyhtmlConfig(uri);
 
   return await prettyhtml(text, {
@@ -49,7 +29,7 @@ async function format(
     tabWidth: prettyhtmlOptions.tabWidth,
     printWidth: prettyhtmlOptions.printWidth,
     singleQuote: prettyhtmlOptions.singleQuote,
-    prettier: prettierOptions
+    prettier: localPrettierOptions
   });
 }
 
