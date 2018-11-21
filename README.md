@@ -35,20 +35,37 @@ You can turn on format-on-save on a per-language basis by scoping the setting:
 
 ### Prettyhtml's Settings
 
-#### prettyhtml.printWidth (default: 80)
-Fit code within this line limit
+###### `options.tabWidth`
 
-#### prettyhtml.tabWidth (default: 2)
-Number of spaces it should use per tab
+The space width of your indentation level (default: 2)
 
-#### prettyhtml.singleQuote (default: false)
-If true, will use single instead of double quotes
+###### `options.useTabs`
 
-#### prettyhtml.useTabs (default: false)
-If true, indent lines with tabs
+Use tabs instead spaces for indentation (default: false)
 
-#### prettyhtml.prettier (default: null)
-Overwrite the prettier options.
+###### `options.printWidth`
+
+Use different maximum line length (default: 80)
+
+###### `options.usePrettier`
+
+Use prettier for embedded content (default: true)
+
+###### `options.prettier`
+
+Use custom prettier settings for embedded content (default: local config)
+
+###### `options.singleQuote`
+
+Use single quote instead double quotes (default: false)
+
+###### `options.wrapAttributes`
+
+Force to wrap attributes (when it has multiple, default: false)
+
+###### `options.sortAttributes`
+
+Sort attributes alphabetically (default: false)
 
 ## Prettier config
 By default the resolution algorithm of prettier is used:

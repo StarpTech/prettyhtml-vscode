@@ -1,6 +1,6 @@
 {
   "name": "prettyhtml-vscode",
-  "displayName": "PrettyHtml - Template formatter",
+  "displayName": "prettyhtml - The formatter for the modern web",
   "description": "",
   "version": "0.0.1",
   "publisher": "starptech",
@@ -20,6 +20,12 @@
       "type": "object",
       "title": "PrettyHtml - Template formatter",
       "properties": {
+        "prettyhtml.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable prettyhtml as HTML formatter",
+          "scope": "resource"
+        },
         "prettyhtml.printWidth": {
           "type": "integer",
           "default": 80,
@@ -49,6 +55,18 @@
           "default": null,
           "description": "Prettier options",
           "scope": "resource"
+        },
+        "prettyhtml.wrapAttributes": {
+          "type": "boolean",
+          "default": false,
+          "description": "Force to wrap attributes",
+          "scope": "resource"
+        },
+        "prettyhtml.sortAttributes": {
+          "type": "boolean",
+          "default": false,
+          "description": "Sort attributes alphabetically",
+          "scope": "resource"
         }
       }
     }
@@ -66,11 +84,11 @@
     "@types/prettier": "^1.13.2",
     "cross-env": "^5.2.0",
     "tslint": "^5.11.0",
-    "typescript": "^3.0.1",
+    "typescript": "^3.1.6",
     "vscode": "^1.1.21"
   },
   "dependencies": {
-    "@starptech/prettyhtml": "0.0.44",
-    "prettier": "^1.14.2"
+    "@starptech/prettyhtml": "0.8.2",
+    "prettier": "^1.15.2"
   }
 }

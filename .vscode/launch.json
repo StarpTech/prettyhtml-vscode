@@ -11,7 +11,8 @@
             "request": "launch",
             "runtimeExecutable": "${execPath}",
             "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}"
+                "--extensionDevelopmentPath=${workspaceFolder}",
+                "--extensions-dir=${workspaceRoot}/.", // no other extension loaded
             ],
             "outFiles": [
                 "${workspaceFolder}/out/**/*.js"

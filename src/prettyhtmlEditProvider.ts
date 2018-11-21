@@ -19,18 +19,20 @@ function getConfig(uri?: Uri): Object {
 async function format(
   text: string,
   { uri }: TextDocument,
-  options: Object
+  options: { [index: string]: any },
+  prettyhtmlOptions: { [index: string]: any }
 ): Promise<string> {
   const localPrettierOptions = await resolveConfig(uri.path);
-  const prettyhtmlOptions: any = await getConfig(uri);
 
   return await prettyhtml(text, {
     useTabs: prettyhtmlOptions.useTabs,
     tabWidth: prettyhtmlOptions.tabWidth,
     printWidth: prettyhtmlOptions.printWidth,
     singleQuote: prettyhtmlOptions.singleQuote,
-    prettier: localPrettierOptions
-  });
+    prettier: localPrettierOptions,
+    wrapAttributes: prettyhtmlOptions.wrapAttributes,
+    sortAttributes: prettyhtmlOptions.sortAttributes
+  }).contents;
 }
 
 function fullDocumentRange(document: TextDocument): Range {
@@ -65,7 +67,19 @@ class PrettyhtmlEditProvider
   }
 
   private async _provideEdits(document: TextDocument, options: Object) {
-    const code = await format(document.getText(), document, options);
+    const prettyhtmlOptions: any = await getConfig(document.uri);
+    if (prettyhtmlOptions.enable === false) {
+      console.info(
+        "Prettyhtml is not enabled. Set 'prettyhtml.enable' to true"
+      );
+      return [];
+    }
+    const code = await format(
+      document.getText(),
+      document,
+      options,
+      prettyhtmlOptions
+    );
     return [TextEdit.replace(fullDocumentRange(document), code)];
   }
 }
