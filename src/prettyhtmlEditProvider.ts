@@ -22,7 +22,7 @@ async function format(
   options: { [index: string]: any },
   prettyhtmlOptions: { [index: string]: any }
 ): Promise<string> {
-  const localPrettierOptions = await resolveConfig(uri.path);
+  const localPrettierOptions = await resolveConfig(uri.fsPath);
 
   return await prettyhtml(text, {
     useTabs: prettyhtmlOptions.useTabs,
